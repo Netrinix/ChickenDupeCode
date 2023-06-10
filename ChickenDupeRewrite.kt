@@ -1,5 +1,6 @@
 package me.foshou.case.dupe
 
+import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.Chicken
 import org.bukkit.entity.EntityType
@@ -22,6 +23,7 @@ object ChickenDupeRewrite: Listener {
     abstract class ChickenDupeRunnable(val chicken: Chicken, val itemStack: ItemStack): BukkitRunnable() {
         override fun run() {
             chicken.world.dropItem(chicken.location, itemStack)
+            Bukkit.getPluginManager().callEvent(ChickenDupeEvent(chicken))
         }
     }
 
